@@ -1,0 +1,80 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7 ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>	<html class="no-js  lt-ie10 lt-ie9 lt-ie8 ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>	<html class="no-js lt-ie10 lt-ie9 ie8" lang="en"> <![endif]-->
+<!--[if IE 9]>	<html class="no-js lt-ie10 ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es"> <!--<![endif]-->
+
+<head> 
+	<script></script> 
+	<meta charset="utf-8">
+	<title>Camera... Action!</title>
+	<link href="http://pazguille.github.com/chico.bootstrap/css/reset.css" rel="stylesheet" />
+	<link href="http://pazguille.github.com/chico.bootstrap/css/chico-bootstrap.css" rel="stylesheet" />
+	<style>
+		body {
+			text-align: center;
+		}
+
+		div {
+			margin: 0 auto;
+			width: 400px;
+			border: 5px solid #eee;
+			overflow: hidden;
+		}
+		video {
+			margin: 0;
+			float:left;
+		}
+
+		#video1 {
+			-webkit-filter: hue-rotate(10deg);
+		}
+
+		#video2 {
+			-webkit-filter: hue-rotate(90deg);
+		}
+
+		#video3 {
+			-webkit-filter: hue-rotate(180deg);
+		}
+
+		#video4 {
+			-webkit-filter: hue-rotate(270deg);
+		}
+		canvas {
+			-webkit-filter: sepia(100%) opacity(60%) grayscale(10%);
+			/*
+			grayscale(amount) percentage
+			sepia(amount) percentage
+			saturate(amount) number
+			hue-rotate(angle) deg
+			invert(amount) percentage
+			opacity(amount) percentage
+			brightness(amount) percentage
+			contrast(amount) percentage
+			blur(radius) px
+			drop-shadow(shadow) (10px -16px 30px purple)
+			custom (coming soon)
+			*/
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Camera... Action!</h1>
+	<div>
+		<video id="video1" autoplay width="200" height="150"></video>
+		<video id="video2" autoplay width="200" height="150"></video>
+		<video id="video3" autoplay width="200" height="150"></video>
+		<video id="video4" autoplay width="200" height="150"></video>
+	</div>
+	<p class="ch-form-actions">
+		<button id="shoot" class="ch-btn">Shoot!</button>
+	</p>
+	<!--canvas></canvas-->
+
+
+	<script src="camera.action.js"></script>
+</body> 
+</html>

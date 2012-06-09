@@ -1,37 +1,5 @@
-# jVent
+# Camera.action
 
-Event Emitter Class for the browser based on NodeJS EventEmitter.
-
-## Methods
-- addListener / on: Adds a listener to the collection for a specified event.
-- once: Adds a one time listener to the collection for a specified event. It will execute only once.
-- removeListener / off: Removes a listener from the collection for a specified event.
-- removeAllListeners: Removes all listeners from the collection for a specified event.
-- setMaxListeners: Removes all listeners from the collection for a specified event.
-- listeners: Returns all listeners from the collection for a specified event.
-- emit: Execute each of the listener collection in order with the data object.
-
-## Use
-
-``` js
-// Create a new instance
-
-var obj = new jvent();
-
-// Create a listener
-
-var fn = function () {};
-
-// Methods
-
-obj.once("born", fn);
-
-obj.addListener("live", fn);
-
-obj.emit("live", data);
-
-obj.removeListener("live", fn);
-```
 
 ## Contact
 - Guillermo Paz (Frontend developer - JavaScript developer | Web standards lover)
