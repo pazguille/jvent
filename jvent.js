@@ -107,7 +107,7 @@
 		* Removes all listeners from the collection for a specified event.
 		* @public
 		* @function
-		* @name Events#removeListener
+		* @name Events#removeAllListeners
 		* @param {string} event Event name.
 		* @returns itself
 		* @example
@@ -123,7 +123,7 @@
 		* Increases the number of listeners. Set to zero for unlimited.
 		* @public
 		* @function
-		* @name Events#removeListener
+		* @name Events#setMaxListeners
 		* @param {number} n Number of max listeners.
 		* @returns itself
 		* @example
@@ -139,7 +139,7 @@
 		* Returns all listeners from the collection for a specified event.
 		* @public
 		* @function
-		* @name Events#removeListener
+		* @name Events#listeners
 		* @param {string} event Event name.
 		* @returns Array
 		* @example
@@ -151,7 +151,7 @@
 
 		/**
 		* Execute each of the listener collection in order with the data object.
-		* @name Events#Emit
+		* @name Events#emit
 		* @public
 		* @protected
 		* @param {string} event The event name you want to emit.
