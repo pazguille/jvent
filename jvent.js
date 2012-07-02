@@ -191,6 +191,6 @@
 		return this;
 	};
 
-	exports.jvent = exports.jVent = exports.jv = exports.EventEmiter = Events;
+	exports.jvent = exports.jVent = exports.jv = exports.EventEmitter = Events;
 
 }(window));
