@@ -150,20 +150,20 @@
 		};
 
 		/**
-		* Execute each of the listener collection in order with the data object.
+		* Execute each item in the listener collection in order with the specified data.
 		* @name Events#emit
 		* @public
 		* @protected
-		* @param {string} event The event name you want to emit.
-		* @param {object} data 
+		* @param {string} event The name of the event you want to emit.
+		* @param {...object} var_args Data to pass to the listeners.
 		* @example
-		* // Will add a event handler to the "ready" event
-		* me.emit("ready", {});
+		* // Will emit the "ready" event with "param1" and "param2" as arguments.
+		* me.emit("ready", "param1", "param2");
 		*/
-		this.emit = function (event, data) {
+		this.emit = function (event) {
 
 			if (typeof event === "string") {
-				event = { "type": event };
+				arguments[0] = event = { "type": event };
 			}
 
 			if (!event.target) {
@@ -180,7 +180,7 @@
 					len = listeners.length;
 
 				for (i; i < len; i += 1) {
-					listeners[i].call(this, event, data);
+					listeners[i].apply(this, arguments);
 				}
 			}
 

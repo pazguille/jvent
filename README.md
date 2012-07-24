@@ -28,7 +28,7 @@ obj.once("born", fn);
 
 obj.addListener("live", fn);
 
-obj.emit("live", data);
+obj.emit("live", "param1", "param2");
 
 obj.removeListener("live", fn);
 ```
