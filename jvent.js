@@ -1,9 +1,8 @@
 (function (exports) {
-	"use strict";
+	'use strict';
 
 	var Events = function () {
-		var that = this,
-			collection = {},
+		var collection = {},
 			maxListeners = 10;
 
 		/**
@@ -24,18 +23,18 @@
 		* me.on("ready", startDoingStuff);
 		*/
 		this.addListener = this.on = function (event, listener) { // Event: 'newListener'
-			if (typeof collection[event] === "undefined") {
+			if (collection[event] === undefined) {
 				collection[event] = [];
 			}
 
 			if (collection[event].length + 1 > maxListeners) {
- 				throw "Warning: So many listeners for an event.";
+				throw 'Warning: So many listeners for an event.';
 			}
-			
+
 			collection[event].push(listener);
 
-			if (event !== "newListener") {
-				this.emit("newListener");
+			if (event !== 'newListener') {
+				this.emit('newListener');
 			}
 
 			return this;
@@ -160,10 +159,15 @@
 		* // Will emit the "ready" event with "param1" and "param2" as arguments.
 		* me.emit("ready", "param1", "param2");
 		*/
-		this.emit = function (event) {
+		this.emit = function () {
+			var args = arguments,
+				event = args[0],
+				listeners,
+				i,
+				len;
 
-			if (typeof event === "string") {
-				arguments[0] = event = { "type": event };
+			if (typeof event === 'string') {
+				event = {'type': event};
 			}
 
 			if (!event.target) {
@@ -171,13 +175,13 @@
 			}
 
 			if (!event.type) {
-				throw new Error("Event object missing 'type' property.");
+				throw new Error('Event object missing "type" property.');
 			}
 
 			if (collection[event.type] instanceof Array) {
-				var listeners = collection[event.type],
-					i = 0,
-					len = listeners.length;
+				listeners = collection[event.type];
+				i = 0;
+				len = listeners.length;
 
 				for (i; i < len; i += 1) {
 					listeners[i].apply(this, arguments);
@@ -191,6 +195,6 @@
 		return this;
 	};
 
-	exports.jvent = exports.jVent = exports.jv = exports.EventEmitter = Events;
+	exports.jvent = exports.EventEmitter = Events;
 
-}(window));
+}(this));
