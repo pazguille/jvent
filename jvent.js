@@ -12,9 +12,10 @@
 		* @name Events#addListener
 		* @param {string} event Event name.
 		* @param {function} listener Listener function.
+		* @param {boolean} once Listener function will be called only one time.
 		* @example
 		* // Will add a event listener to the "ready" event
-		* var startDoingStuff = function () {
+		* var startDoingStuff = function (event, param1, param2, ...) {
 		*     // Some code here!
 		* };
 		*
@@ -22,20 +23,30 @@
 		* // or
 		* me.on("ready", startDoingStuff);
 		*/
-		this.addListener = this.on = function (event, listener) { // Event: 'newListener'
+		this.addListener = this.on = function (event, listener, once) {
+
+			if (event === undefined) {
+				throw new Error('jvent - "addListener(event, listener)": It should receive an event.');
+			}
+
+			if (listener === undefined) {
+				throw new Error('jvent - "addListener(event, listener)": It should receive a listener function.');
+			}
+
+			listener.once = once || false;
+
 			if (collection[event] === undefined) {
 				collection[event] = [];
 			}
 
-			if (collection[event].length + 1 > maxListeners) {
-				throw 'Warning: So many listeners for an event.';
+			if (collection[event].length + 1 > maxListeners && maxListeners !== 0) {
+				throw new Error('Warning: So many listeners for an event.');
 			}
 
 			collection[event].push(listener);
 
-			if (event !== 'newListener') {
-				this.emit('newListener');
-			}
+			// This event is emitted any time someone adds a new listener.
+			this.emit('newListener');
 
 			return this;
 		};
@@ -54,12 +65,7 @@
 		*/
 		this.once = function (event, listener) {
 
-			var fn = function (event, data) {
-				listener.call(this, event, data);
-				this.off(event.type, fn);
-			};
-
-			this.on(event, fn);
+			this.on(event, listener, true);
 
 			return this;
 		};
@@ -83,18 +89,24 @@
 		* me.off("ready", startDoingStuff);
 		*/
 		this.removeListener = this.off = function (event, listener) {
-			if (collection[event] instanceof Array) {
+			if (event === undefined) {
+				throw new Error('jvent - "removeListener(event, listener)": It should receive an event.');
+			}
 
-				if (listener) {
-					var listeners = collection[event],
-						j = 0,
-						len = listeners.length;
+			if (listener === undefined) {
+				throw new Error('jvent - "removeListener(event, listener)": It should receive a listener function.');
+			}
 
-					for (j; j < len; j += 1) {
-						if (listeners[j] === listener) {
-							listeners.splice(j, 1);
-							break;
-						}
+			var listeners = collection[event],
+				j = 0,
+				len;
+
+			if (listeners instanceof Array) {
+				len = listeners.length;
+				for (j; j < len; j += 1) {
+					if (listeners[j] === listener) {
+						listeners.splice(j, 1);
+						break;
 					}
 				}
 			}
@@ -113,6 +125,10 @@
 		* me.removeAllListeners("ready");
 		*/
 		this.removeAllListeners = function (event) {
+			if (event === undefined) {
+				throw new Error('jvent - "removeAllListeners(event)": It should receive an event.');
+			}
+
 			delete collection[event];
 
 			return this;
@@ -129,6 +145,10 @@
 		* me.setMaxListeners(20);
 		*/
 		this.setMaxListeners = function (n) {
+			if (isNaN(n)) {
+				throw new Error('jvent - "setMaxListeners(n)": It should receive a number.');
+			}
+
 			maxListeners = n;
 
 			return this;
@@ -145,6 +165,14 @@
 		* me.listeners("ready");
 		*/
 		this.listeners = function (event) {
+			if (event === undefined) {
+				throw new Error('jvent - "listeners(event)": It should receive an event.');
+			}
+
+			if (collection[event] === undefined) {
+				throw new Error('jvent - "listeners(event)": The event must exist into the collection.');
+			}
+
 			return collection[event];
 		};
 
@@ -166,16 +194,16 @@
 				i,
 				len;
 
+			if (event === undefined) {
+				throw new Error('jvent - "emit(event)": It should receive an event.');
+			}
+
 			if (typeof event === 'string') {
 				event = {'type': event};
 			}
 
 			if (!event.target) {
 				event.target = this;
-			}
-
-			if (!event.type) {
-				throw new Error('Event object missing "type" property.');
 			}
 
 			if (collection[event.type] instanceof Array) {
@@ -185,11 +213,16 @@
 
 				for (i; i < len; i += 1) {
 					listeners[i].apply(this, arguments);
+
+					if (listeners[i].once) {
+						this.off(event.type, listeners[i]);
+						len -= 1;
+						i -= 1;
+					}
 				}
 			}
 
 			return this;
-
 		};
 
 		return this;
