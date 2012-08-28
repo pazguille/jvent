@@ -1,28 +1,41 @@
 (function (exports) {
 	'use strict';
 
-	var Events = function () {
+	var Object = exports.Object,
+		Array = exports.Array,
+		isArray = (function () {
+			if (typeof Array.isArray === 'function') {
+				return Array.isArray;
+			}
+
+			return function (obj) {
+				return (Object.prototype.toString.call(obj) === '[object Array]');
+			};
+		}());
+
+
+	function Events() {
 		var collection = {},
 			maxListeners = 10;
 
 		/**
-		* Adds a listener to the collection for a specified event.
-		* @public
-		* @function
-		* @name Events#addListener
-		* @param {string} event Event name.
-		* @param {function} listener Listener function.
-		* @param {boolean} once Listener function will be called only one time.
-		* @example
-		* // Will add a event listener to the "ready" event
-		* var startDoingStuff = function (event, param1, param2, ...) {
-		*     // Some code here!
-		* };
-		*
-		* me.addListener("ready", startDoingStuff);
-		* // or
-		* me.on("ready", startDoingStuff);
-		*/
+		 * Adds a listener to the collection for a specified event.
+		 * @public
+		 * @function
+		 * @name Events#addListener
+		 * @param {string} event Event name.
+		 * @param {function} listener Listener function.
+		 * @param {boolean} once Listener function will be called only one time.
+		 * @example
+		 * // Will add a event listener to the "ready" event
+		 * var startDoingStuff = function (event, param1, param2, ...) {
+		 *     // Some code here!
+		 * };
+		 *
+		 * me.addListener("ready", startDoingStuff);
+		 * // or
+		 * me.on("ready", startDoingStuff);
+		 */
 		this.addListener = this.on = function (event, listener, once) {
 
 			if (event === undefined) {
@@ -52,17 +65,17 @@
 		};
 
 		/**
-		* Adds a one time listener to the collection for a specified event. It will execute only once.
-		* @public
-		* @function
-		* @name Events#once
-		* @param {string} event Event name.
-		* @param {function} listener Listener function.
-		* @returns itself
-		* @example
-		* // Will add a event handler to the "contentLoad" event once
-		* me.once("contentLoad", startDoingStuff);
-		*/
+		 * Adds a one time listener to the collection for a specified event. It will execute only once.
+		 * @public
+		 * @function
+		 * @name Events#once
+		 * @param {string} event Event name.
+		 * @param {function} listener Listener function.
+		 * @returns itself
+		 * @example
+		 * // Will add a event handler to the "contentLoad" event once
+		 * me.once("contentLoad", startDoingStuff);
+		 */
 		this.once = function (event, listener) {
 
 			this.on(event, listener, true);
@@ -71,23 +84,23 @@
 		};
 
 		/**
-		* Removes a listener from the collection for a specified event.
-		* @public
-		* @function
-		* @name Events#removeListener
-		* @param {string} event Event name.
-		* @param {function} listener Listener function.
-		* @returns itself
-		* @example
-		* // Will remove event handler to the "ready" event
-		* var startDoingStuff = function () {
-		*     // Some code here!
-		* };
-		*
-		* me.removeListener("ready", startDoingStuff);
-		* // or
-		* me.off("ready", startDoingStuff);
-		*/
+		 * Removes a listener from the collection for a specified event.
+		 * @public
+		 * @function
+		 * @name Events#removeListener
+		 * @param {string} event Event name.
+		 * @param {function} listener Listener function.
+		 * @returns itself
+		 * @example
+		 * // Will remove event handler to the "ready" event
+		 * var startDoingStuff = function () {
+		 *     // Some code here!
+		 * };
+		 *
+		 * me.removeListener("ready", startDoingStuff);
+		 * // or
+		 * me.off("ready", startDoingStuff);
+		 */
 		this.removeListener = this.off = function (event, listener) {
 			if (event === undefined) {
 				throw new Error('jvent - "removeListener(event, listener)": It should receive an event.');
@@ -101,7 +114,7 @@
 				j = 0,
 				len;
 
-			if (listeners instanceof Array) {
+			if (isArray(listeners)) {
 				len = listeners.length;
 				for (j; j < len; j += 1) {
 					if (listeners[j] === listener) {
@@ -115,15 +128,15 @@
 		};
 
 		/**
-		* Removes all listeners from the collection for a specified event.
-		* @public
-		* @function
-		* @name Events#removeAllListeners
-		* @param {string} event Event name.
-		* @returns itself
-		* @example
-		* me.removeAllListeners("ready");
-		*/
+		 * Removes all listeners from the collection for a specified event.
+		 * @public
+		 * @function
+		 * @name Events#removeAllListeners
+		 * @param {string} event Event name.
+		 * @returns itself
+		 * @example
+		 * me.removeAllListeners("ready");
+		 */
 		this.removeAllListeners = function (event) {
 			if (event === undefined) {
 				throw new Error('jvent - "removeAllListeners(event)": It should receive an event.');
@@ -135,15 +148,15 @@
 		};
 
 		/**
-		* Increases the number of listeners. Set to zero for unlimited.
-		* @public
-		* @function
-		* @name Events#setMaxListeners
-		* @param {number} n Number of max listeners.
-		* @returns itself
-		* @example
-		* me.setMaxListeners(20);
-		*/
+		 * Increases the number of listeners. Set to zero for unlimited.
+		 * @public
+		 * @function
+		 * @name Events#setMaxListeners
+		 * @param {number} n Number of max listeners.
+		 * @returns itself
+		 * @example
+		 * me.setMaxListeners(20);
+		 */
 		this.setMaxListeners = function (n) {
 			if (isNaN(n)) {
 				throw new Error('jvent - "setMaxListeners(n)": It should receive a number.');
@@ -155,15 +168,15 @@
 		};
 
 		/**
-		* Returns all listeners from the collection for a specified event.
-		* @public
-		* @function
-		* @name Events#listeners
-		* @param {string} event Event name.
-		* @returns Array
-		* @example
-		* me.listeners("ready");
-		*/
+		 * Returns all listeners from the collection for a specified event.
+		 * @public
+		 * @function
+		 * @name Events#listeners
+		 * @param {string} event Event name.
+		 * @returns Array
+		 * @example
+		 * me.listeners("ready");
+		 */
 		this.listeners = function (event) {
 			if (event === undefined) {
 				throw new Error('jvent - "listeners(event)": It should receive an event.');
@@ -177,16 +190,16 @@
 		};
 
 		/**
-		* Execute each item in the listener collection in order with the specified data.
-		* @name Events#emit
-		* @public
-		* @protected
-		* @param {string} event The name of the event you want to emit.
-		* @param {...object} var_args Data to pass to the listeners.
-		* @example
-		* // Will emit the "ready" event with "param1" and "param2" as arguments.
-		* me.emit("ready", "param1", "param2");
-		*/
+		 * Execute each item in the listener collection in order with the specified data.
+		 * @name Events#emit
+		 * @public
+		 * @protected
+		 * @param {string} event The name of the event you want to emit.
+		 * @param {...object} var_args Data to pass to the listeners.
+		 * @example
+		 * // Will emit the "ready" event with "param1" and "param2" as arguments.
+		 * me.emit("ready", "param1", "param2");
+		 */
 		this.emit = function () {
 			var args = arguments,
 				event = args[0],
@@ -206,7 +219,7 @@
 				event.target = this;
 			}
 
-			if (collection[event.type] instanceof Array) {
+			if (isArray(collection[event.type])) {
 				listeners = collection[event.type];
 				i = 0;
 				len = listeners.length;
@@ -226,7 +239,7 @@
 		};
 
 		return this;
-	};
+	}
 
 	exports.jvent = exports.EventEmitter = Events;
 
