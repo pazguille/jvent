@@ -1,36 +1,50 @@
-# jVent
+# jvent
 
-Event Emitter Class for the browser based on NodeJS EventEmitter.
+  Event Emitter Class for the browser based on NodeJS EventEmitter.
 
-## Methods
-- addListener / on: Adds a listener to the collection for a specified event.
-- once: Adds a one time listener to the collection for a specified event. It will execute only once.
-- removeListener / off: Removes a listener from the collection for a specified event.
-- removeAllListeners: Removes all listeners from the collection for a specified event.
-- setMaxListeners: Removes all listeners from the collection for a specified event.
-- listeners: Returns all listeners from the collection for a specified event.
-- emit: Execute each of the listener collection in order with the data object.
+## Installation
 
-## Use
+    $ component install pazguille/jvent
 
-``` js
+## API
+
+### Jvent#addListener(event, listener, once)
+### Jvent#on(event, listener, once)
+Adds a listener to the collection for a specified event.
+
+### Jvent#once(event, listener)
+Adds a one time listener to the collection for a specified event. It will execute only once.
+
+### Jvent#removeListener(event, listener)
+### Jvent#off(event, listener)
+Removes a listener from the collection for a specified event.
+
+### Jvent#removeAllListeners(event)
+Removes all listeners from the collection for a specified event.
+
+### Jvent#setMaxListeners(n)
+Removes all listeners from the collection for a specified event.
+
+### Jvent#listeners(event)
+Returns all listeners from the collection for a specified event.
+
+### Jvent#emit(event, [arg1], [arg2], [...])
+Execute each of the listener collection in order with the data object.
+
+## How-to
+
+```js
 // Create a new instance
-
-var obj = new jvent();
+var obj = new Jvent();
 
 // Create a listener
-
 var fn = function () {};
 
 // Methods
-
-obj.once("born", fn);
-
-obj.addListener("live", fn);
-
-obj.emit("live", "param1", "param2");
-
-obj.removeListener("live", fn);
+obj.once('born', fn);
+obj.addListener('live', fn);
+obj.emit('live', 'param1', 'param2');
+obj.removeListener('live', fn);
 ```
 
 ## Contact

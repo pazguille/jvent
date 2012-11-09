@@ -2,19 +2,20 @@ describe('Jvent', function () {
 	var emitter,
 		listener,
 		listener2;
+		//Jvent = require('jvent');
 
 	beforeEach(function() {
-		emitter = new jvent();
+		emitter = new Jvent();
 
 		listener = jasmine.createSpy('listener'),
 		listener2 = jasmine.createSpy('listener2');
 	});
 
 	describe('Instance', function() {
-		it('Should return an instance of jvent', function () {
+		it('Should return an instance of Jvent', function () {
 			expect(emitter).toBeDefined();
 			expect(typeof emitter).toEqual("object");
-			expect(emitter instanceof jvent).toBeTruthy();
+			expect(emitter instanceof Jvent).toBeTruthy();
 		});
 	});
 
@@ -189,7 +190,7 @@ describe('Jvent', function () {
 			}).not.toThrow();
 		});
 	});
-	
+
 	describe('.listeners()', function () {
 
 		it('Should recibe event parameter', function () {
