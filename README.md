@@ -1,10 +1,12 @@
-# jvent
+# Jvent
 
-  Event Emitter Class for the browser based on NodeJS EventEmitter.
+  Another EventEmitter Class for the browser based on NodeJS EventEmitter.
 
 ## Installation
 
     $ component install pazguille/jvent
+
+See: https://github.com/component/component
 
 ## API
 
@@ -30,6 +32,7 @@ Returns all listeners from the collection for a specified event.
 
 ### Jvent#emit(event, [arg1], [arg2], [...])
 Execute each of the listener collection in order with the data object.
+All EventEmitters emit the event 'newListener' when new listeners are added.
 
 ## How-to
 
