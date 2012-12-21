@@ -199,10 +199,8 @@ describe('Jvent', function () {
 			}).toThrow();
 		});
 
-		it('Should recibe a defined event as parameter', function () {
-			expect(function(){
-				emitter.listeners('something');
-			}).toThrow();
+		it('Should recibe a undefined event as parameter and return undefined', function () {
+			expect(emitter.listeners('something')).not.toBeDefined();
 		});
 
 		it('Should return a collection', function () {

@@ -190,10 +190,6 @@
             throw new Error('jvent - "listeners(event)": It should receive an event.');
         }
 
-        if (this.collection[event] === undefined) {
-            throw new Error('jvent - "listeners(event)": The event must exist into the collection.');
-        }
-
         return this.collection[event];
     };
 
