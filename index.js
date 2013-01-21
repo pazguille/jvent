@@ -49,7 +49,7 @@
 
         var collection = this.collection;
 
-        listener.once = once || false;
+        listener.once = once || false;
 
         if (collection[event] === undefined) {
             collection[event] = [];
@@ -205,7 +205,7 @@
      * me.emit("ready", "param1", "param2");
      */
     Jvent.prototype.emit = function () {
-        var args = arguments,
+        var args = Array.prototype.slice.call( arguments, 0 ), //converted to array
             event = args[0],
             listeners,
             i,
@@ -227,9 +227,11 @@
             listeners = this.collection[event.type];
             i = 0;
             len = listeners.length;
+            
+            var listenerArgs = args.splice(1); //remove event name
 
             for (i; i < len; i += 1) {
-                listeners[i].apply(this, arguments);
+                listeners[i].apply(this, listenerArgs);
 
                 if (listeners[i].once) {
                     this.off(event.type, listeners[i]);

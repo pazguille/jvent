@@ -237,7 +237,7 @@ describe('Jvent', function () {
 		it('Should emit call all listeners with parameters', function () {
 			emitter.emit('something', 'param1');
 
-			expect(listener).toHaveBeenCalledWith('something', 'param1');
+			expect(listener).toHaveBeenCalledWith('param1');
 		});
 	});
 });
