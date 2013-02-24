@@ -205,9 +205,10 @@
      * me.emit("ready", "param1", "param2");
      */
     Jvent.prototype.emit = function () {
-        var args = Array.prototype.slice.call( arguments, 0 ), //converted to array
+        var args = Array.prototype.slice.call(arguments, 0), // converted to array
             event = args[0],
             listeners,
+            listenerArgs,
             i,
             len;
 
@@ -227,8 +228,7 @@
             listeners = this.collection[event.type];
             i = 0;
             len = listeners.length;
-            
-            var listenerArgs = args.splice(1); //remove event name
+            listenerArgs = args.splice(1); //remove event name
 
             for (i; i < len; i += 1) {
                 listeners[i].apply(this, listenerArgs);
