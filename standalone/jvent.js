@@ -1,19 +1,6 @@
 (function (window) {
     'use strict';
 
-    var Object = window.Object,
-        Array = window.Array,
-        isArray = (function () {
-            if (typeof Array.isArray === 'function') {
-                return Array.isArray;
-            }
-
-            return function (obj) {
-                return (Object.prototype.toString.call(obj) === '[object Array]');
-            };
-        }());
-
-
     function Jvent() {
         this.collection = {};
         this.maxListeners = 10;
@@ -120,7 +107,8 @@
             j = 0,
             len;
 
-        if (isArray(listeners)) {
+
+        if (listeners !== undefined) {
             len = listeners.length;
             for (j; j < len; j += 1) {
                 if (listeners[j] === listener) {
@@ -224,7 +212,7 @@
             event.target = this;
         }
 
-        if (isArray(this.collection[event.type])) {
+        if (this.collection[event.type] !== undefined) {
             listeners = this.collection[event.type];
             i = 0;
             len = listeners.length;
