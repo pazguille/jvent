@@ -191,10 +191,9 @@ Jvent.prototype.listeners = function (event) {
  */
 Jvent.prototype.emit = function () {
     var args = Array.prototype.slice.call(arguments, 0), // converted to array
-        event = args[0],
+        event = args.shift(),
         listeners,
-        listenerArgs,
-        i,
+        i = 0,
         len;
 
     if (event === undefined) {
@@ -211,12 +210,10 @@ Jvent.prototype.emit = function () {
 
     if (this.collection[event.type] !== undefined) {
         listeners = this.collection[event.type];
-        i = 0;
         len = listeners.length;
-        listenerArgs = args.splice(1); //remove event name
 
         for (i; i < len; i += 1) {
-            listeners[i].apply(this, listenerArgs);
+            listeners[i].apply(this, args);
 
             if (listeners[i].once) {
                 this.off(event.type, listeners[i]);
