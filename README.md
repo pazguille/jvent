@@ -8,6 +8,12 @@
 
 See: https://github.com/component/component
 
+### Standalone
+Also, you can use the standalone version without components.
+```html
+<script src="../standalone/jvent.js"></script>
+```
+
 ## API
 
 ### Jvent#addListener(event, listener, once)
