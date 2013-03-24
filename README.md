@@ -14,46 +14,106 @@ Also, you can use the standalone version without components.
 <script src="../standalone/jvent.js"></script>
 ```
 
+## How-to
+
+First, requires Jvent:
+```js
+var Jvent = require('jvent');
+```
+
+ Creates a new instance:
+```js
+var emitter = new Jvent();
+```
+
+Now, defines a listener:
+```js
+function listener(arg1, arg2) {
+    alert(arg1 + ' '+ arg2);
+})
+```
+
+Then, adds a new event live with a listener:
+```js
+emitter.addListener('live', listener);
+```
+
+Emitsthe event with some data:
+```js
+emitter.emit('live', 'param1', 'param2');
+```
+
 ## API
 
 ### Jvent#addListener(event, listener, once)
 ### Jvent#on(event, listener, once)
-Adds a listener to the collection for a specified event.
+Adds a `listener` to the collection for a specified `event`.
+- `event` - The name of the event you want to add.
+- `listener` - Listener you want to add from given event.
+- `once` (optional) - Indicates if the given listener should be executed only once.
+
+```js
+emitter.addListener('live', listener);
+
+// or
+
+emitter.on('live', listener);
+```
 
 ### Jvent#once(event, listener)
-Adds a one time listener to the collection for a specified event. It will execute only once.
+Adds a one time `listener` to the collection for a specified `event`. It will execute only once.
+- `event` - The name of the event.
+- `listener` - Listener you want to add from the given event.
+
+```js
+emitter.once('live', listener);
+```
 
 ### Jvent#removeListener(event, listener)
 ### Jvent#off(event, listener)
-Removes a listener from the collection for a specified event.
-
-### Jvent#removeAllListeners(event)
-Removes all listeners from the collection for a specified event.
-
-### Jvent#setMaxListeners(n)
-Removes all listeners from the collection for a specified event.
-
-### Jvent#listeners(event)
-Returns all listeners from the collection for a specified event.
-
-### Jvent#emit(event, [arg1], [arg2], [...])
-Execute each of the listener collection in order with the data object.
-All EventEmitters emit the event 'newListener' when new listeners are added.
-
-## How-to
+Removes a `listener` from the collection for a specified `event`.
+- `event` - The name of the event.
+- `listener` - Listener you want to remove from the given event.
 
 ```js
-// Create a new instance
-var obj = new Jvent();
+emitter.removeListener('live', listener);
 
-// Create a listener
-var fn = function () {};
+// or
 
-// Methods
-obj.once('born', fn);
-obj.addListener('live', fn);
-obj.emit('live', 'param1', 'param2');
-obj.removeListener('live', fn);
+emitter.off('live', listener);
+```
+
+### Jvent#removeAllListeners(event)
+Removes all `listeners` from the collection for a specified `event`.
+- `event` - The name of the event you want to remove.
+
+```js
+emitter.removeAllListeners('live');
+```
+
+### Jvent#setMaxListeners(n)
+By default Jvent will print a warning if more than 10 `listeners` are added for a particular `event`. This function allows that to be increased it. Set to zero for unlimited.
+- `n` - The maximum number of listeners.
+
+```js
+emitter.setMaxListeners(20);
+```
+
+### Jvent#listeners(event)
+Returns all `listeners` from the collection for a specified `event`.
+- `event` - The name of the event.
+
+```js
+emitter.listeners('live');
+```
+
+### Jvent#emit(event, [arg1], [arg2], [...])
+Execute each of the `listeners` collection in order with the given parameters.
+All emitters emit the event `newListener` when new listeners are added.
+- `channel` - The name of the event you want to emit.
+
+```js
+emitter.emit('live', 'data1', 'data2');
 ```
 
 ## Contact
