@@ -1,8 +1,8 @@
 {
   "name": "jvent",
   "repo": "pazguille/jvent",
-  "description": "Event Emitter Class for the browser based on NodeJS EventEmitter.",
-  "version": "0.0.3",
+  "description": "Event Emitter Class for the browser based on Node EventEmitter.",
+  "version": "0.1.0",
   "author": "Guille Paz <guille87paz@gmail.com>",
   "twitter": "@pazguille",
   "keywords": [
@@ -13,7 +13,6 @@
   "dependencies": {},
   "development": {},
   "license": "MIT",
-  "scripts": [
-    "index.js"
-  ]
+  "main": "dist/jvent.js",
+  "scripts": ["dist/jvent.js"]
 }
