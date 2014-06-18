@@ -7,7 +7,7 @@
      * Adds a listener to the collection for a specified event.
      * @public
      * @function
-     * @name Jvent#addListener
+     * @name Jvent#on
      * @param {string} event Event name.
      * @param {function} listener Listener function.
      * @example
@@ -56,7 +56,7 @@
      * Removes a listener from the collection for a specified event.
      * @public
      * @function
-     * @name Jvent#removeListener
+     * @name Jvent#off
      * @param {string} event Event name.
      * @param {function} listener Listener function.
      * @returns itself
