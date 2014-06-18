@@ -110,7 +110,7 @@ emitter.listeners('live');
 ### Jvent#emit(event, [arg1], [arg2], [...])
 Execute each of the `listeners` collection in order with the given parameters.
 All emitters emit the event `newListener` when new listeners are added.
-- `channel` - The name of the event you want to emit.
+- `event` - The name of the event you want to emit.
 
 ```js
 emitter.emit('live', 'data1', 'data2');
