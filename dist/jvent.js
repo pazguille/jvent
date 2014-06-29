@@ -1,5 +1,5 @@
 /*!
- * jvent.js v0.1.0
+ * jvent.js v0.1.1
  *
  * Copyright (c) 2014, @pazguille
  * Released under the MIT license.
@@ -138,6 +138,10 @@
      * me.emit("ready", "param1", "param2");
      */
     Jvent.prototype.emit = function () {
+        if (this._collection === undefined) {
+            return this;
+        }
+
         var args = [].slice.call(arguments, 0), // converted to array
             event = args.shift(),
             listeners = this._collection[event],
