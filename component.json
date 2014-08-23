@@ -13,6 +13,5 @@
   "dependencies": {},
   "development": {},
   "license": "MIT",
-  "main": "dist/jvent.js",
-  "scripts": ["dist/jvent.js"]
+  "main": "index.js"
 }

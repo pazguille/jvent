@@ -1,10 +1,3 @@
-/*!
- * jvent - v0.2.0
- *
- * Copyright (c) 2014, @pazguille <guille87paz@gmail.com>
- * Released under the MIT license.
- */
-(function(window) {
 'use strict';
 
 function Jvent() {}
@@ -162,17 +155,4 @@ Jvent.prototype.emit = function () {
 /**
  * Expose
  */
-// AMD
-if (typeof window.define === 'function' && window.define.amd !== undefined) {
-  window.define('Jvent', [], function () {
-    return Jvent;
-  });
-// CommonJS
-} else if (typeof module !== 'undefined' && module.exports !== undefined) {
-  module.exports = Jvent;
-// Browser
-} else {
-  window.Jvent = Jvent;
-};
-
-}(this));
+module.exports = Jvent;
