@@ -1,3 +1,5 @@
+var Jvent = require('../');
+
 describe('Jvent', function () {
 	var emitter,
 		listener,
