@@ -152,6 +152,35 @@ Jvent.prototype.emit = function () {
   return this;
 };
 
+
+/**
+ * tiny replacement for ECMAScript 5's 'bind' method.
+ */
+function binded(f, thisArg){
+  return function(){
+    return f.apply(thisArg, arguments);
+  };
+}
+
+/**
+ * Attach the Jvent functionalities to any object.
+ * @name Jvent#attach
+ * @public
+ * @static
+ * @param {Object} obj the target object.
+ */
+Jvent.attach = function(obj){
+  // the wrapped emitter
+  var eventEmitter = new Jvent();
+
+  // create a redirection toward all the emitter's method into obj
+  for(var memberName in Jvent.prototype){
+    if(Jvent.prototype.hasOwnProperty(memberName)){
+      obj[memberName] = binded(eventEmitter[memberName], eventEmitter);
+    }
+  }
+};
+
 /**
  * Expose
  */

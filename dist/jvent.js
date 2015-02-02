@@ -1,7 +1,7 @@
 /*!
  * jvent - v0.2.0
  *
- * Copyright (c) 2014, @pazguille <guille87paz@gmail.com>
+ * Copyright (c) 2015, @pazguille <guille87paz@gmail.com>
  * Released under the MIT license.
  */
 (function(window) {
@@ -157,6 +157,35 @@ Jvent.prototype.emit = function () {
   }
 
   return this;
+};
+
+
+/**
+ * tiny replacement for ECMAScript 5's 'bind' method.
+ */
+function binded(f, thisArg){
+  return function(){
+    return f.apply(thisArg, arguments);
+  };
+}
+
+/**
+ * Attach the Jvent functionalities to any object.
+ * @name Jvent#attach
+ * @public
+ * @static
+ * @param {Object} obj the target object.
+ */
+Jvent.attach = function(obj){
+  // the wrapped emitter
+  var eventEmitter = new Jvent();
+
+  // create a redirection toward all the emitter's method into obj
+  for(var memberName in Jvent.prototype){
+    if(Jvent.prototype.hasOwnProperty(memberName)){
+      obj[memberName] = binded(eventEmitter[memberName], eventEmitter);
+    }
+  }
 };
 
 /**
