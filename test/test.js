@@ -1,24 +1,39 @@
 var Jvent = require('../');
 
+var emitterBuilders = [
+	function(){
+		return new Jvent();
+	},
+	function(){
+		var foo = { foo: 'foo' };
+		Jvent.attach(foo);
+		return foo;
+	}
+];
+
+emitterBuilders.forEach(function(emitterBuilder, emitterType){
+
 describe('Jvent', function () {
 	var emitter,
 		listener,
 		listener2;
 
 	beforeEach(function() {
-		emitter = new Jvent();
+		emitter = emitterBuilder();
 
 		listener = jasmine.createSpy('listener'),
 		listener2 = jasmine.createSpy('listener2');
 	});
 
-	describe('Instance', function() {
-		it('Should return an instance of Jvent', function () {
-			expect(emitter).toBeDefined();
-			expect(typeof emitter).toEqual("object");
-			expect(emitter instanceof Jvent).toBeTruthy();
+	if(emitterType === 0) {
+		describe('Instance', function() {
+			it('Should return an instance of Jvent', function () {
+				expect(emitter).toBeDefined();
+				expect(typeof emitter).toEqual("object");
+				expect(emitter instanceof Jvent).toBeTruthy();
+			});
 		});
-	});
+	}
 
 	describe('Public methods', function() {
 		it('Should be defined "addListener" and "on" methods', function () {
@@ -131,4 +146,6 @@ describe('Jvent', function () {
 			expect(listener).toHaveBeenCalledWith('param1');
 		});
 	});
+});
+
 });

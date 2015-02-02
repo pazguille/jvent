@@ -1,13 +1,13 @@
 /*!
  * jvent - v0.2.0
  *
- * Copyright (c) 2014, @pazguille <guille87paz@gmail.com>
+ * Copyright (c) 2015, @pazguille <guille87paz@gmail.com>
  * Released under the MIT license.
  */
 (function(window) {
 'use strict';
 
-function Jvent() {}
+function attach(obj){
 
 /**
  * Adds a listener to the collection for a specified event.
@@ -24,7 +24,7 @@ function Jvent() {}
  *
  * me.on("ready", startDoingStuff);
  */
-Jvent.prototype.on = function(event, listener) {
+obj.on = function(event, listener) {
   this._collection = this._collection || {};
   this._collection[event] = this._collection[event] || [];
   this._collection[event].push(listener);
@@ -43,7 +43,7 @@ Jvent.prototype.on = function(event, listener) {
  * // Will add a event handler to the "contentLoad" event once
  * me.once("contentLoad", startDoingStuff);
  */
-Jvent.prototype.once = function (event, listener) {
+obj.once = function (event, listener) {
   var that = this;
 
   function fn() {
@@ -74,7 +74,7 @@ Jvent.prototype.once = function (event, listener) {
  *
  * me.off("ready", startDoingStuff);
  */
-Jvent.prototype.off = function (event, listener) {
+obj.off = function (event, listener) {
 
   var listeners = this._collection[event],
       j = 0;
@@ -105,7 +105,7 @@ Jvent.prototype.off = function (event, listener) {
  * @example
  * me.removeAllListeners("ready");
  */
-Jvent.prototype.removeAllListeners = function (event) {
+obj.removeAllListeners = function (event) {
   this._collection = this._collection || {};
   delete this._collection[event];
   return this;
@@ -121,7 +121,7 @@ Jvent.prototype.removeAllListeners = function (event) {
  * @example
  * me.listeners("ready");
  */
-Jvent.prototype.listeners = function (event) {
+obj.listeners = function (event) {
   this._collection = this._collection || {};
   return this._collection[event];
 };
@@ -137,7 +137,7 @@ Jvent.prototype.listeners = function (event) {
  * // Will emit the "ready" event with "param1" and "param2" as arguments.
  * me.emit("ready", "param1", "param2");
  */
-Jvent.prototype.emit = function () {
+obj.emit = function () {
   if (this._collection === undefined) {
     return this;
   }
@@ -158,6 +158,14 @@ Jvent.prototype.emit = function () {
 
   return this;
 };
+
+}
+
+function Jvent() {
+  attach(this);
+}
+
+Jvent.attach = attach;
 
 /**
  * Expose
