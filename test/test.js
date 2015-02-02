@@ -1,24 +1,28 @@
 var Jvent = require('../');
 
-describe('Jvent', function () {
+function parameterized(emitterType, emitterFactory){
+
+describe('Jvent (' + emitterType + ')', function () {
 	var emitter,
 		listener,
 		listener2;
 
 	beforeEach(function() {
-		emitter = new Jvent();
+		emitter = emitterFactory();
 
 		listener = jasmine.createSpy('listener'),
 		listener2 = jasmine.createSpy('listener2');
 	});
 
-	describe('Instance', function() {
-		it('Should return an instance of Jvent', function () {
-			expect(emitter).toBeDefined();
-			expect(typeof emitter).toEqual("object");
-			expect(emitter instanceof Jvent).toBeTruthy();
+	if(emitterType === 'instance') {
+		describe('Instance', function() {
+			it('Should return an instance of Jvent', function () {
+				expect(emitter).toBeDefined();
+				expect(typeof emitter).toEqual("object");
+				expect(emitter instanceof Jvent).toBeTruthy();
+			});
 		});
-	});
+	}
 
 	describe('Public methods', function() {
 		it('Should be defined "addListener" and "on" methods', function () {
@@ -131,4 +135,14 @@ describe('Jvent', function () {
 			expect(listener).toHaveBeenCalledWith('param1');
 		});
 	});
+});
+}
+
+parameterized('instance', function(){ 
+	return new Jvent();
+});
+parameterized('attached', function(){
+	var foo = { foo: 'foo' };
+	Jvent.attach(foo);
+	return foo;
 });
