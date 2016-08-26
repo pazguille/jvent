@@ -2,7 +2,7 @@
   "name": "jvent",
   "repo": "pazguille/jvent",
   "description": "Event Emitter Class for the browser based on Node EventEmitter.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Guille Paz <guille87paz@gmail.com>",
   "twitter": "@pazguille",
   "keywords": [

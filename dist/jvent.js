@@ -1,7 +1,7 @@
 /*!
- * jvent - v0.2.0
+ * jvent - v1.0.0
  *
- * Copyright (c) 2014, @pazguille <guille87paz@gmail.com>
+ * Copyright (c) 2016, @pazguille <guille87paz@gmail.com>
  * Released under the MIT license.
  */
 (function(window) {
@@ -76,7 +76,7 @@ Jvent.prototype.once = function (event, listener) {
  */
 Jvent.prototype.off = function (event, listener) {
 
-  var listeners = this._collection[event],
+  var listeners = this._collection && this._collection[event],
       j = 0;
 
   if (listeners !== undefined) {
@@ -86,10 +86,10 @@ Jvent.prototype.off = function (event, listener) {
         break;
       }
     }
-  }
 
-  if (listeners.length === 0) {
-    this.removeAllListeners(event);
+    if (listeners.length === 0) {
+      this.removeAllListeners(event);
+    }
   }
 
   return this;
