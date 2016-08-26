@@ -84,6 +84,12 @@ describe('Jvent', function () {
 			expect(listener).not.toHaveBeenCalled();
 		});
 
+        it('Does not throw when trying to remove a listener that was never added', function() {
+            expect(function() {
+                emitter.off('something', listener);
+            }).not.toThrow();
+        });
+
 	});
 
 	describe('.removeAllListeners(event)', function () {
