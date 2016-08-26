@@ -69,7 +69,7 @@ Jvent.prototype.once = function (event, listener) {
  */
 Jvent.prototype.off = function (event, listener) {
 
-  var listeners = this._collection[event],
+  var listeners = this._collection && this._collection[event],
       j = 0;
 
   if (listeners !== undefined) {
@@ -79,10 +79,10 @@ Jvent.prototype.off = function (event, listener) {
         break;
       }
     }
-  }
 
-  if (listeners.length === 0) {
-    this.removeAllListeners(event);
+    if (listeners.length === 0) {
+      this.removeAllListeners(event);
+    }
   }
 
   return this;
