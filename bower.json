@@ -3,7 +3,7 @@
   "repository": "git@github.com:pazguille/jvent.git",
   "description": "Event Emitter Class for the browser based on Node EventEmitter.",
   "author": "Guille Paz <guille87paz@gmail.com>",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "ignore": [
     ".*",
     "package.json",
