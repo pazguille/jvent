@@ -153,6 +153,6 @@ Jvent.prototype.emit = function () {
 };
 
 /**
- * Expose
+ * Expose Jvent
  */
 module.exports = Jvent;

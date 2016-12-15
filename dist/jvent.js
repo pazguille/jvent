@@ -1,7 +1,7 @@
 /*!
- * jvent - v1.0.0
+ * jvent - v1.0.1
  *
- * Copyright (c) 2016, @pazguille <guille87paz@gmail.com>
+ * Copyright (c) 2016, Guille Paz <guille87paz@gmail.com>
  * Released under the MIT license.
  */
 (function(window) {
@@ -160,7 +160,7 @@ Jvent.prototype.emit = function () {
 };
 
 /**
- * Expose
+ * Expose Jvent
  */
 // AMD
 if (typeof window.define === 'function' && window.define.amd !== undefined) {
