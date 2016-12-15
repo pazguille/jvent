@@ -10,7 +10,6 @@ var footer = require('gulp-footer');
 var replace = require('gulp-replace');
 var rename = require('gulp-rename');
 var ugifyjs = require('gulp-uglify');
-var jasmine = require('gulp-jasmine');
 
 /**
  * Package
@@ -71,14 +70,6 @@ gulp.task('min', function() {
     .pipe(ugifyjs())
     .pipe(rename(pkg.name + '.min.js'))
     .pipe(gulp.dest('./dist/'));
-});
-
-/**
- * Test task
- */
-gulp.task('test', function() {
-  return gulp.src('./test/test.js')
-    .pipe(jasmine({'reporter': 'spec'}));
 });
 
 /**

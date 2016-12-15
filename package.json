@@ -1,23 +1,27 @@
 {
   "name": "jvent",
-  "repository": "git@github.com:pazguille/jvent.git",
+  "version": "1.0.1",
   "description": "Event Emitter Class for the browser based on Node EventEmitter.",
-  "author": "@pazguille <guille87paz@gmail.com>",
-  "version": "1.0.0",
+  "repository": "git@github.com:pazguille/jvent.git",
+  "author": "Guille Paz <guille87paz@gmail.com>",
   "scripts": {
     "build": "gulp",
     "dist": "gulp dist",
-    "test": "gulp test"
+    "test": "gulp && NODE_ENV=test istanbul cover _mocha -- ./test/*.spec.js"
   },
   "devDependencies": {
+    "chai": "3.5.0",
+    "chai-spies": "0.7.1",
+    "coveralls": "2.11.4",
     "gulp": "3.9.1",
     "gulp-footer": "1.0.5",
     "gulp-header": "1.8.8",
-    "gulp-jasmine": "2.4.2",
     "gulp-rename": "1.2.2",
     "gulp-replace": "0.5.4",
     "gulp-uglify": "2.0.0",
-    "mkdirp": "0.5.1"
+    "istanbul": "0.4.1",
+    "mkdirp": "0.5.1",
+    "mocha": "3.2.0"
   },
   "main": "index.js",
   "keywords": [
