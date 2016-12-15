@@ -1,12 +1,12 @@
-# jvent.js [![Build Status](https://secure.travis-ci.org/pazguille/jvent.png)](http://travis-ci.org/pazguille/jvent) [![devDependency Status](https://david-dm.org/pazguille/jvent/dev-status.png)](https://david-dm.org/pazguille/jvent#info=devDependencies)
+# jvent.js [![NPM version][npm-image]][npm-link] [![License][lic-image]][npm-link] [![Build status][travis-image]][travis-link] [![Coverage Status][coverage-image]][coverage-link] [![Dependency status][deps-image]][deps-link] [![devDependency status][devdeps-image]][devdeps-link] [![downloads][dt-image]][npm-link]
 
 >  EventEmitter Class for the browser based on NodeJS EventEmitter.
 
 ## Installation
 
-    $ component install pazguille/jvent
+    $ npm install jvent
 
-See: https://github.com/component/component
+    $ bower install jvent
 
 ### Standalone
 Also, you can use the standalone version without components.
@@ -97,13 +97,25 @@ All emitters emit the event `newListener` when new listeners are added.
 emitter.emit('live', 'data1', 'data2');
 ```
 
-## Maintained by
+## With :heart: by
 - Guille Paz (Front-end developer | Web standards lover)
 - E-mail: [guille87paz@gmail.com](mailto:guille87paz@gmail.com)
 - Twitter: [@pazguille](http://twitter.com/pazguille)
 - Web: [http://pazguille.me](http://pazguille.me)
 
 ## License
-Licensed under the MIT license.
+MIT license. Copyright © 2016 [@pazguille](http://twitter.com/pazguille).
 
-Copyright (c) 2012 [@pazguille](http://twitter.com/pazguille).
+
+[npm-image]: https://img.shields.io/npm/v/jvent.svg
+[lic-image]: https://img.shields.io/npm/l/jvent.svg
+[npm-link]: https://npmjs.org/package/jvent
+[travis-image]: https://img.shields.io/travis/pazguille/jvent.svg
+[travis-link]: https://travis-ci.org/pazguille/jvent
+[deps-image]: https://img.shields.io/david/pazguille/jvent.svg
+[deps-link]: https://david-dm.org/pazguille/jvent
+[devdeps-image]: https://img.shields.io/david/dev/pazguille/jvent.svg
+[devdeps-link]: https://david-dm.org/pazguille/jvent#info=devDependencies
+[dt-image]: https://img.shields.io/npm/dt/jvent.svg
+[coverage-image]: https://img.shields.io/coveralls/pazguille/jvent.svg
+[coverage-link]: https://coveralls.io/github/pazguille/jvent
