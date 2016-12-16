@@ -1,7 +1,7 @@
 {
   "name": "jvent",
-  "version": "1.0.1",
-  "description": "Event Emitter Class for the browser based on Node EventEmitter.",
+  "version": "1.0.2",
+  "description": "An universal JavaScript Emitter based on NodeJS EventEmitter.",
   "repository": "git@github.com:pazguille/jvent.git",
   "author": "Guille Paz <guille87paz@gmail.com>",
   "scripts": {
@@ -27,7 +27,8 @@
   "keywords": [
     "events",
     "event emitter",
-    "emitter"
+    "emitter",
+    "bus"
   ],
   "license": "MIT"
 }

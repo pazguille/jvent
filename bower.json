@@ -1,9 +1,9 @@
 {
   "name": "jvent",
   "repository": "git@github.com:pazguille/jvent.git",
-  "description": "Event Emitter Class for the browser based on Node EventEmitter.",
+  "description": "An universal JavaScript Emitter based on NodeJS EventEmitter.",
   "author": "Guille Paz <guille87paz@gmail.com>",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "ignore": [
     ".*",
     "package.json",
@@ -26,9 +26,7 @@
   "keywords": [
     "events",
     "event emitter",
-    "emitter"
-  ],
-  "authors": [
-    "@pazguille <guille87paz@gmail.com>"
+    "emitter",
+    "bus"
   ]
 }
