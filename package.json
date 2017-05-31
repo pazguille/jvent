@@ -10,7 +10,7 @@
     "test": "gulp && NODE_ENV=test istanbul cover _mocha -- ./test/*.spec.js"
   },
   "devDependencies": {
-    "chai": "3.5.0",
+    "chai": "4.0.1",
     "chai-spies": "0.7.1",
     "coveralls": "2.11.16",
     "gulp": "3.9.1",
