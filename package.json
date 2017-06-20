@@ -17,7 +17,7 @@
     "gulp-footer": "1.0.5",
     "gulp-header": "1.8.8",
     "gulp-rename": "1.2.2",
-    "gulp-replace": "0.5.4",
+    "gulp-replace": "0.6.0",
     "gulp-uglify": "2.0.1",
     "istanbul": "0.4.1",
     "mkdirp": "0.5.1",
