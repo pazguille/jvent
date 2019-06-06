@@ -12,7 +12,7 @@
   "devDependencies": {
     "chai": "3.5.0",
     "chai-spies": "0.7.1",
-    "coveralls": "2.11.16",
+    "coveralls": "3.0.4",
     "gulp": "3.9.1",
     "gulp-footer": "1.0.5",
     "gulp-header": "1.8.8",
